@@ -28,9 +28,6 @@
 
 namespace SA;
 
-use Aws\Sns\SnsClient;
-use Aws\DynamoDb\DynamoDbClient;
-
 class SnsHandler
 {
     /** AWS region for SQS **/
@@ -48,12 +45,12 @@ class SnsHandler
 
         $this->region = $region;
 
-        $this->sns = SnsClient::factory([
-                'region' => $region,
+        $this->sns = new \Aws\Sns\SnsClient([
+                'region' => $region
             ]);
-
-        $this->ddb = DynamoDbClient::factory([
-                'region' => $region,
+        
+        $this->ddb = new \Aws\DynamoDb\DynamoDbClient([
+                'region' => $region
             ]);
     }
 
